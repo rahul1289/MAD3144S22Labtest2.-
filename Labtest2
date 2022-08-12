@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+</head>
+<body background="https://cdn5.vectorstock.com/i/1000x1000/89/54/car-garage-auto-repair-service-workshop-station-vector-32568954.jpg">
+    <h1 align="center">Habibi Automotive</h1>
+    <br>
+    <br>
+    <h2>Please select the features you want to add!</h2>
+    <form id="carcare" autocomplete="off">
+        
+        <label>
+            <input id="sunroof" type="checkbox" value="1000" data-itemname="Sunroof">
+            Sunroof: $1000
+        </label>
+        <br>
+        <label>
+            <input id="gps" type="checkbox" value="5000" data-itemname="Built-in GPS">
+            Built-in GPS: $5000
+        </label>
+        <br>
+        <label>
+            <input id="paint" type="checkbox" value="6000" data-itemname="Painting">
+            Painting: $6000
+        </label>
+        <br>
+        <label>
+            <input id="info" type="checkbox" value="8000" data-itemname="Infotainment System">
+            Infotainment System: $8000
+        </label>
+
+    </form>
+    
+    <div>
+        Selections:
+        <div id="selections"></div>
+        
+       <h3> Total Price: <span id="price"></span></h3>
+    </div>
+    
+    <script>
+    var price = 10000;
+    document.getElementById('price').innerHTML = price;
+    
+    var options = document.getElementById('carcare').querySelectorAll('input');
+    for(var i=0; i<options.length; i++){
+        options[i].onclick = calculation;
+    }
+    
+    function calculation(){
+        var itemPrice = Number(this.value);
+        if(this.checked){
+            price += itemPrice;
+        }
+        else{
+            price -= itemPrice;
+        }
+    
+        showSelections();
+        document.getElementById('price').innerHTML = price;
+    }
+    
+    function showSelections(){
+        var list = [];
+        var checkedOnes = document.getElementById('carcare').querySelectorAll('input:checked');
+        for(var i=0; i<checkedOnes.length; i++){
+            var itemname = checkedOnes[i].getAttribute('data-itemname');
+            list.push(itemname);
+        }
+        document.getElementById('selections').innerHTML = list.join('<br>');
+    }
+    </script>
+</body>
+</html>
